@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tokyo Night Mood</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+
+  
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#000;
+      color:white;
+      font-family:'Noto Sans KR', sans-serif;
+      overflow-x:hidden;
+    }
+
+    .hero{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:url('images/izakaya1.jpg') center/cover no-repeat fixed;
+}
+
+    .hero img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      animation:slowZoom 14s ease-in-out infinite alternate;
+      filter:brightness(0.72);
+    }
+
+    @keyframes slowZoom{
+      from{
+        transform:scale(1);
+      }
+      to{
+        transform:scale(1.06);
+      }
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:
+      radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.55) 100%);
+    }
+
+    .content{
+      position:absolute;
+      left:8%;
+      bottom:10%;
+      z-index:5;
+      max-width:520px;
+      animation:fadeUp 1.6s ease;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .mini{
+      letter-spacing:4px;
+      font-size:12px;
+      opacity:0.7;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:88px;
+      line-height:0.95;
+      font-weight:300;
+      margin-bottom:26px;
+    }
+
+    .desc{
+      font-size:17px;
+      line-height:1.8;
+      opacity:0.82;
+      margin-bottom:34px;
+    }
+
+    .enter{
+      display:inline-block;
+      padding:14px 30px;
+      border:1px solid rgba(255,255,255,0.35);
+      border-radius:999px;
+      color:white;
+      text-decoration:none;
+      backdrop-filter:blur(10px);
+      transition:0.35s;
+      font-size:14px;
+      letter-spacing:1px;
+    }
+
+    .enter:hover{
+      background:white;
+      color:black;
+    }
+
+    .floating-light{
+      position:absolute;
+      width:260px;
+      height:260px;
+      background:rgba(255,70,0,0.15);
+      filter:blur(90px);
+      top:10%;
+      right:10%;
+      animation:floatLight 6s ease-in-out infinite;
+    }
+
+    @keyframes floatLight{
+      0%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-18px);
+      }
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    .scroll{
+      position:absolute;
+      right:28px;
+      bottom:40px;
+      writing-mode:vertical-rl;
+      font-size:11px;
+      letter-spacing:5px;
+      opacity:0.45;
+      z-index:10;
+    }
+
+    @media(max-width:768px){
+
+      h1{
+        font-size:56px;
+      }
+
+      .desc{
+        font-size:15px;
+      }
+
+      .content{
+        left:7%;
+        right:7%;
+        bottom:8%;
+      }
+
+    }
+
+     .topbar {
+  position: absolute;
+  top: 32px;
+  right: 6vw;
+  z-index: 20;
+  display: flex;
+  gap: 34px;
+}
+
+.topbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+
+.topbar a:hover {
+  opacity: 1;
+}
+
+.next-section{
+  position:relative;
+  background:#000;
+  padding:150px 6vw 80px;
+  z-index:20;
+}
+
+.panel{
+  max-width:900px;
+
+  margin:0;
+}
+
+.small-title{
+  font-size:12px;
+  letter-spacing:4px;
+  opacity:0.6;
+  margin-bottom:34px;
+}
+
+
+.next-section h2{
+  font-family:'Noto Sans KR', serif;
+
+  font-size:54px;
+  line-height:1.12;
+  font-weight:300;
+  letter-spacing:-1.5px;
+  max-width:780px;
+  margin-bottom:26px;
+}
+
+.next-section p{
+  font-size:18px;
+  line-height:1.9;
+  opacity:0.75;
+  margin-top:20px;
+}
+
+.food-flow{
+  width:100%;
+  background:#000;
+  padding:35px 6vw 160px;
+}
+
+.flow-window{
+  width:100%;
+  overflow:hidden;
+  border:1px solid rgba(255,120,60,0.18);
+  border-radius:8px;
+  padding:18px;
+  background:rgba(20,8,4,0.55);
+  box-shadow:0 0 40px rgba(255,60,20,0.08);
+}
+
+.flow-track{
+  display:flex;
+  gap:20px;
+  width:max-content;
+  animation:flowLeft 40s linear infinite;
+}
+
+.flow-track img{
+  width:280px;
+  height:190px;
+  object-fit:cover;
+  border-radius:6px;
+  flex-shrink:0;
+  filter:brightness(0.78) contrast(1.08) saturate(0.9);
+  transition:0.4s;
+}
+
+.flow-track img:hover{
+  transform:scale(1.03);
+  filter:brightness(1);
+}
+
+@keyframes flowLeft{
+
+  from{
+    transform:translateX(0);
+  }
+
+  to{
+    transform:translateX(-50%);
+  }
+
+}
+
+.mood-section{
+  background:#000;
+  padding:140px 6vw 220px;
+}
+
+.mood-title{
+  font-size:12px;
+  letter-spacing:6px;
+  opacity:0.55;
+  margin-bottom:34px;
+}
+
+.mood-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:18px;
+}
+
+.mood-card{
+  border-top:1px solid rgba(255,120,60,0.28);
+  padding-top:34px;
+}
+
+.mood-card span{
+  display:block;
+  color:#d66b3d;
+  font-size:13px;
+  margin-bottom:22px;
+}
+
+.mood-card h3{
+  font-size:28px;
+  font-weight:300;
+  margin-bottom:18px;
+}
+
+.mood-card p{
+  font-size:15px;
+  line-height:1.8;
+  opacity:0.68;
+}
+
+@media(max-width:768px){
+  .mood-grid{
+    grid-template-columns:1fr;
+  }
+
+  .mood-section{
+    padding:40px 6vw 100px;
+  }
+}
+
+.contact-section{
+
+  position:relative;
+
+  min-height:95vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  overflow:hidden;
+
+  background:url('images/izakaya4.jpg') center/cover no-repeat fixed;
+}
+
+.contact-overlay{
+
+  position:absolute;
+  inset:0;
+
+  background:rgba(0,0,0,0.58);
+
+  backdrop-filter:blur(2px);
+}
+
+.contact-content{
+  position:relative;
+  z-index:5;
+  padding:0 6vw;
+}
+
+.contact-mini{
+  font-size:12px;
+  letter-spacing:6px;
+  opacity:0.6;
+  margin-bottom:24px;
+}
+
+.contact-section h2{
+
+  font-size:68px;
+  line-height:1.05;
+  font-weight:300;
+
+  letter-spacing:-2px;
+
+  margin-bottom:26px;
+}
+
+.contact-section p{
+
+  font-size:17px;
+  line-height:1.9;
+
+  opacity:0.78;
+
+  margin-bottom:44px;
+}
+
+.contact-button{
+
+  display:inline-block;
+
+  padding:16px 34px;
+
+  border:1px solid rgba(255,255,255,0.22);
+
+  border-radius:999px;
+
+  color:white;
+  text-decoration:none;
+
+  transition:0.35s;
+
+  background:rgba(255,255,255,0.05);
+
+  backdrop-filter:blur(10px);
+}
+
+.contact-button:hover{
+
+  background:white;
+  color:black;
+}
+
+@media(max-width:768px){
+
+  .contact-section h2{
+    font-size:42px;
+  }
+
+}
+
+.mood-card img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+
+  margin-top:34px;
+
+  border-radius:14px;
+
+  filter:brightness(0.82) contrast(1.05);
+
+  transition:0.45s;
+}
+
+.mood-card:hover img{
+  transform:scale(1.03);
+  filter:brightness(1);
+}
+
+  </style>
+</head>
+
+<body>
+
+<section class="hero">
+
+   <header class="topbar">
+  <a href="#">Story</a>
+  <a href="#">Gallery</a>
+  <a href="#">Contact</a>
+</header>
+
+
+  <div class="overlay"></div>
+
+  <div class="floating-light"></div>
+
+  <div class="content">
+
+    <div class="mini">TOKYO NIGHT SCENE</div>
+
+    <h1>
+      Tonight,<br>
+      Stay Here
+    </h1>
+
+    <p class="desc">
+      조용한 밤 골목 끝,<br>
+      작은 불빛 아래에서 시작되는 장면.
+    </p>
+
+    <a href="#" class="enter">
+      Enter
+    </a>
+
+  </div>
+
+  <div class="scroll">
+    SCROLL
+  </div>
+
+</section>
+
+<section class="next-section">
+
+  <div class="panel">
+
+    <div class="small-title">
+      OUR STORY
+    </div>
+    
+
+    <h2>
+      Quiet lights,<br>
+      drifting through Tokyo nights.
+    </h2>
+
+    <p>
+      천천히 스크롤되며 지나가는 장면처럼,
+      공간과 분위기를 보여주는 섹션입니다.
+    </p>
+
+  </div>
+
+</section>
+
+<section class="food-flow">
+
+  <div class="flow-window">
+
+    <div class="flow-track">
+
+      <img src="images/food1.jpg" alt="">
+      <img src="images/food2.jpg" alt="">
+      <img src="images/food3.jpg" alt="">
+      <img src="images/food4.jpg" alt="">
+      <img src="images/food5.jpg" alt="">
+      <img src="images/food6.jpg" alt="">
+      <img src="images/food7.jpg" alt="">
+      <img src="images/food8.jpg" alt="">
+      <img src="images/food9.jpg" alt="">
+
+      <img src="images/food1.jpg" alt="">
+      <img src="images/food2.jpg" alt="">
+      <img src="images/food3.jpg" alt="">
+      <img src="images/food4.jpg" alt="">
+      <img src="images/food5.jpg" alt="">
+      <img src="images/food6.jpg" alt="">
+      <img src="images/food7.jpg" alt="">
+      <img src="images/food8.jpg" alt="">
+      <img src="images/food9.jpg" alt="">
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="mood-section">
+
+  <div class="mood-title">
+    THE MOOD
+  </div>
+
+  <div class="mood-grid">
+
+    <div class="mood-card">
+      <span>01</span>
+      <h3>Warm Lights</h3>
+      <p>붉은 등불 아래, 하루의 끝을 천천히 내려놓는 공간.</p>
+      <img src="images/warm light1.jpg" alt="Warm Lights">
+    </div>
+
+    <div class="mood-card">
+      <span>02</span>
+      <h3>Small Plates</h3>
+      <p>가볍게 나누는 작은 접시와 늦은 밤의 대화.</p>
+      <img src="images/small plats1.jpg" alt="Warm Lights">
+    </div>
+
+    <div class="mood-card">
+      <span>03</span>
+      <h3>Late Drinks</h3>
+      <p>하이볼 한 잔과 함께 오래 머무르고 싶은 밤.</p>
+      <img src="images/late drink1.jpg" alt="Warm Lights">
+    </div>
+
+  </div>
+
+</section>
+
+<section class="contact-section">
+  
+  <div class="contact-overlay"></div>
+
+  <div class="contact-content">
+
+  <div class="contact-mini">
+    RESERVATION
+  </div>
+
+  <h2>
+   Stay a little longer tonight.
+  </h2>
+
+  <p>
+    늦은 밤까지 이어지는 조용한 시간.<br>
+연기와 조명 사이로,
+하이볼 잔이 천천히 채워지고
+작은 접시들이 테이블 위를 채웁니다.<br>
+
+오늘의 밤이 조금 더 길어지길 바랍니다.
+  </p>
+
+  <a href="#" class="contact-button">
+    Reserve a Seat
+  </a>
+
+  </div>
+
+</section>
+
+</body>
+</html>
