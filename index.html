@@ -26,16 +26,16 @@
     }
 
     .hero{
-  position:relative;
-  width:100%;
-  height:100vh;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+      position:relative;
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
 
-  background:url('images/izakaya1.png') center/cover no-repeat fixed;
-}
+      background:url('images/izakaya1.png') center/cover no-repeat fixed;
+    }
 
     .hero img{
       width:100%;
@@ -62,44 +62,54 @@
     }
 
     .content{
-      position:absolute;
-      left:8%;
-      bottom:10%;
-      z-index:5;
-      max-width:520px;
-      animation:fadeUp 1.6s ease;
+     position:absolute;
+
+     right:8%;
+     bottom:22%;
+
+     z-index:15;
+
+     width:500px;
+
+     text-align:right;
     }
 
-    @keyframes fadeUp{
-      from{
-        opacity:0;
-        transform:translateY(40px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
+    .hero-title{
+      
+      width:100%;
 
-    .mini{
-      letter-spacing:4px;
-      font-size:12px;
-      opacity:0.7;
-      margin-bottom:18px;
-    }
-
-    h1{
-      font-size:88px;
-      line-height:0.95;
+      font-size:90px;
+      line-height:0.92;
       font-weight:300;
-      margin-bottom:26px;
+
+      text-align:right;
+
+      margin:0 0 28px;
+    }
+
+    .hero-title .title-line{
+      display:block;
+      opacity:1;
+    }
+
+    .hero-mini{
+      display:inline-block;
+
+      letter-spacing:5px;
+      font-size:12px;
+      opacity:0.75;
+
+      margin-bottom:20px;
+      margin-right:35px;
     }
 
     .desc{
       font-size:17px;
       line-height:1.8;
       opacity:0.82;
-      margin-bottom:34px;
+      margin-bottom:28px;
+
+      text-align:right;
     }
 
     .enter{
@@ -131,17 +141,53 @@
       animation:floatLight 6s ease-in-out infinite;
     }
 
-    @keyframes floatLight{
-      0%{
-        transform:translateY(0px);
-      }
-      50%{
-        transform:translateY(-18px);
-      }
-      100%{
-        transform:translateY(0px);
-      }
-    }
+    @keyframes miniSlide{
+  from{
+    opacity:0;
+    transform:translateX(-45vw);
+  }
+
+  to{
+    opacity:0.7;
+    transform:translateX(0);
+  }
+}
+
+@keyframes titleSlide{
+  from{
+    opacity:0;
+    transform:translateX(-70vw);
+  }
+
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+@keyframes descRise{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+
+  to{
+    opacity:0.82;
+    transform:translateY(0);
+  }
+}
+
+@keyframes enterDrop{
+  from{
+    opacity:0;
+    transform:translateY(-35px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
 
     .scroll{
       position:absolute;
@@ -173,26 +219,29 @@
     }
 
      .topbar {
-  position: absolute;
-  top: 32px;
-  right: 6vw;
-  z-index: 20;
-  display: flex;
-  gap: 34px;
-}
+       position: absolute;
+       top: 32px;
 
-.topbar a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  opacity: 0.85;
-}
+       left: 6vw;
+       right: auto;
 
-.topbar a:hover {
-  opacity: 1;
-}
+       z-index: 20;
+       display: flex;
+       gap: 100px;
+      }
+
+     .topbar a {
+       color: #fff;
+       text-decoration: none;
+       font-size: 14px;
+       font-weight: 500;
+       letter-spacing: 0.08em;
+       opacity: 0.85;
+      }
+
+     .topbar a:hover {
+       opacity: 1;
+      }
 
 .next-section{
   position:relative;
@@ -467,25 +516,29 @@
 
   <div class="floating-light"></div>
 
-  <div class="content">
+<div class="content">
 
-    <div class="mini">TOKYO NIGHT SCENE</div>
-
-    <h1>
-      Tonight,<br>
-      Stay Here
-    </h1>
-
-    <p class="desc">
-      조용한 밤 골목 끝,<br>
-      작은 불빛 아래에서 시작되는 장면.
-    </p>
-
-    <a href="#" class="enter">
-      Enter
-    </a>
-
+  <div class="mini hero-mini">
+    TOKYO NIGHT SCENE
   </div>
+
+  <h1 class="hero-title">
+
+    <span class="title-line line-1">
+      Tonight,
+    </span>
+
+    <span class="title-line line-2">
+      Stay Here
+    </span>
+
+  </h1>
+
+  <a href="#" class="enter hero-enter">
+    Enter
+  </a>
+
+</div>
 
   <div class="scroll">
     SCROLL
